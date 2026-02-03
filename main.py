@@ -67,10 +67,14 @@ User question:
                         "role": "user",
                         "parts": [{"text": prompt}]
                     }
-                ]
+                ],
+                # ✅ ONLY ADDITION: token limit
+                config=genai.types.GenerateContentConfig(
+                    max_output_tokens=300
+                )
             )
 
-            #  Correct response reading (NEW SDK)
+            # Correct response reading (NEW SDK)
             answer = response.candidates[0].content.parts[0].text.strip()
 
             answer += (
